@@ -1,0 +1,91 @@
+﻿@using ClientServer.Helper
+@using Ext.Net.MVC;
+
+@model System.Collections.IEnumerable
+
+@{
+    ViewBag.Title = "Ext Client";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Ext Client</title>
+    <link type="text/css" rel="stylesheet" href="../../Content/Site.css"  />
+    <link type="text/css" rel="stylesheet" href="http://speed.ext.net/www/intro/css/main.css" />
+</head>
+<body>
+
+@(Html.X().ResourceManager())
+
+
+@using (Html.BeginForm())
+{
+
+    @(Html.X().ComboBox()
+          .ID("ComboBoxManufacturer")
+          .Editable(false)
+          .QueryMode(DataLoadMode.Local)
+          .TriggerAction(TriggerAction.All)
+          .EmptyText("Выберите производителя")
+          .Listeners(ls =>
+              ls.Select.Handler = "App.ComboBoxModels.clearValue(); App.ComboBoxModels.getStore().load()"
+          )
+          .DisplayField("Name")
+          .ValueField("Id")
+          .Store(Html.X().Store()
+              .AutoLoad(true)
+              .Model(Html.X().Model()
+                  .IDProperty("Id")
+                  .Fields(
+                      Html.X().ModelField().Name("Id"),
+                      Html.X().ModelField().Name("Name")
+                  )
+              )
+              .Proxy(Html.X().AjaxProxy()
+                  .Url("~/api/Data/GetManufacturers")
+                  .Reader(Html.X().JsonReader())
+              )
+          )
+          )
+
+    @(Html.X().ComboBox()
+          .ID("ComboBoxModels")
+          .TypeAhead(true)
+          .QueryMode(DataLoadMode.Local)
+          .TriggerAction(TriggerAction.All)
+          .DisplayField("Name")
+          .ValueField("Id")
+          .EmptyText("Загрузка...")
+          .ValueNotFoundText("Loading...")
+          .Store(Html.X().Store()
+              .AutoLoad(false)
+              .Model(Html.X().Model()
+                  .IDProperty("Id")
+                  .Fields(
+                      Html.X().ModelField().Name("Id"),
+                      Html.X().ModelField().Name("Name")
+                  )
+              )
+              .Proxy(Html.X().AjaxProxy()
+                  .Url("~/api/Data/GetModels")
+                  .Reader(Html.X().JsonReader())
+              )
+              .Parameters(ps =>
+                  ps.Add(new StoreParameter("id", "App.ComboBoxManufacturer.getValue()", ParameterMode.Raw))
+              )
+              .Listeners(ls =>
+                  ls.Load.Handler = @"var combo = App.ComboBoxModels;
+                                    combo.setValue(records[0].get(combo.valueField));"
+              )
+          )
+          )
+
+}
+
+@Html.Hyperlink("../SilverlightClientTestPage.html", "Silverlight client")
+
+</body>
+</html>

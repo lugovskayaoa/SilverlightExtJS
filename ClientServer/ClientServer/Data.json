@@ -1,0 +1,66 @@
+{ 
+	"ManufacturersList":[ 
+	{ 
+		"Id": 1, 
+		"Name": "Ford", 
+		"ModelsList":[ 
+		{ 
+			"Id": 2, 
+			"Name": "Mustang" 
+		}, 
+		{ 
+			"Id": 3, 
+			"Name": "Focus" 
+		},
+		{ 
+			"Id": 4, 
+			"Name": "Mondeo" 
+		} 
+		] 
+	}, 
+	{ 
+		"Id": 5, 
+		"Name": "Audi", 
+		"ModelsList":[ 
+		{ 
+			"Id": 6, 
+			"Name": "100" 
+		}, 
+		{ 
+			"Id": 7, 
+			"Name": "TT" 
+		},
+		{ 
+			"Id": 8, 
+			"Name": "80" 
+		}, 
+		{ 
+			"Id": 9, 
+			"Name": "A4" 
+		}
+		] 
+	}, 
+	{ 
+		"Id": 10, 
+		"Name": "Lada", 
+		"ModelsList":[ 
+		{ 
+			"Id": 11, 
+			"Name": "Vesta" 
+		}, 
+		{ 
+			"Id": 12, 
+			"Name": "Xray" 
+		},
+		{ 
+			"Id": 13, 
+			"Name": "Granta" 
+		}, 
+		{ 
+			"Id": 14, 
+			"Name": "Priora" 
+		}
+		] 
+	} 
+	] 
+}

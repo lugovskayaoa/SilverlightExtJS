@@ -1,0 +1,14 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             x:Class="SilverlightClient.App"
+             xmlns:viewModel="clr-namespace:SilverlightClient.ViewModel">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Content/Style.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            
+            <viewModel:MainViewModel x:Key="MainViewModel" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
